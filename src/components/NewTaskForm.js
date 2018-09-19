@@ -24,7 +24,7 @@ class NewTaskForm extends React.Component {
     let val = event.target.value
     this.setState({
       content: val
-    }, () => console.log(this.state.content))
+    })
   }
 
 

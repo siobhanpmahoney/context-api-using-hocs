@@ -5,7 +5,7 @@ const TaskList = ({allTasks}) => {
   return (
     <div>
     {allTasks.map((t) => {
-      return <TaskItem task = {t} />
+      return <TaskItem task = {t} key={t.id} />
     })}
     </div>
   )
