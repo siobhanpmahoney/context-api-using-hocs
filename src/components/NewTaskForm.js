@@ -16,7 +16,7 @@ class NewTaskForm extends React.Component {
 
     let taskObj = {content: this.state.content, id: createdId}
     this.setState({
-      id: createdId
+      content: ""
     }, () => this.props.createNewTask(taskObj))
   }
 
