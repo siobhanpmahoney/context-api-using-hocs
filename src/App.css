@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: relative;
+  font-family: "Khula"
+}
+
+* {
+  position: relative;
+  font-family: "Khula"
+}
+
+h1, h2, h3 {
+  alignment: center;
+}
+
+.page-container {
+  width: 100%;
+  position: relative;
+  margin: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 0 auto;
+  justify-content: flex-start;
+  align-self: flex-start;
+  align-content: flex-start;
+}
+
+.task-container, .new-task-form {
+  display: flex;
+  flex: 1 1 auto;
+  align-content: center;
+  align-self: center;
+  flex-direction:  column;
+  position: relative;
+  align-items: center;
+
+}
+
+.task-container {
+  flex-basis: 62%;
+}
+
+.new-task-form {
+  flex-basis: 35%;
+
+  margin: 2px 8px;
+  background: #FF5730;
+}
+
+.form {
+  width: 100%;
+  align-items: stretch;
+
+}
+
+select {
+  display: inline-flex;
+
+}
+
+input[type="text"] {
+  display: inline-flex;
+  width: 70%;
+  margin: 2px 8px 8px;
+}
