@@ -1,4 +1,6 @@
 import React from 'react'
+import {newTaskObj} from '../utils/newTaskObj'
+
 
 class TaskForm extends React.Component {
   constructor(props){
@@ -9,46 +11,54 @@ class TaskForm extends React.Component {
       content: "",
       priority: "",
     }
+
+
   }
 
   componentDidMount() {
-    if (this.props.selectedTask != "new") {
+    // if (this.props.selectedTask.id != "new") {
       let {selectedTask} = this.props
       this.setState({
         content: selectedTask.content,
         priority: selectedTask.priority,
         id: selectedTask.id
       })
-    }
+    // }
   }
 
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.selectedTask != prevProps.selectedTask) {
+  //       console.log("in componentDidUpdate")
+  //       console.log("CDU, this.props.selectedTask", this.props.selectedTask)
+  //     // if (this.props.selectedTask.id != "new") {
+  //       let {selectedTask} = this.props
+  //       console.log("in comp did update - selectedTask", selectedTask)
+  //       this.setState({
+  //         content: selectedTask.content,
+  //         priority: selectedTask.priority,
+  //         id: selectedTask.id
+  //       })
+  //   }
+  // }
+
   componentDidUpdate(prevProps) {
+    if (this.props.taskCount != prevProps.taskCount) {
+      this.setState(newTaskObj)
+    }
     if (this.props.selectedTask != prevProps.selectedTask) {
-      if (this.props.selectedTask != "new") {
-        let {selectedTask} = this.props
-        this.setState({
-          content: selectedTask.content,
-          priority: selectedTask.priority,
-          id: selectedTask.id
-        })
-      } else {
-        this.setState({
-          id: null,
-          content: "",
-          priority: ""
-        })
-      }
+      this.setState(this.props.selectedTask)
     }
   }
 
   submit = () => {
-    let createdId = this.props.selectedTask == "new" ? this.props.taskCount + 1 : this.props.selectedTask.id
+    let createdId = this.props.selectedTask.id == "new" ? this.props.taskCount + 1 : this.props.selectedTask.id
     let taskObj = {id: createdId, content: this.state.content, priority: this.state.priority}
-    this.setState({
-      id: null,
-      content: "",
-      priority: ""
-    }, () => this.props.createOrUpdateTask(taskObj))
+    console.log(newTaskObj)
+    // this.setState({
+    //   newTaskObj
+    // }, () => this.props.createOrUpdateTask(taskObj))
+
+    this.props.createOrUpdateTask(taskObj)
   }
 
   captureTaskInfo = (event) => {
@@ -62,11 +72,7 @@ class TaskForm extends React.Component {
   }
 
   clearTaskForm = () => {
-    this.setState({
-      id: null,
-      content: "",
-      priority: ""
-    })
+    this.setState(newTaskObj)
   }
 
 

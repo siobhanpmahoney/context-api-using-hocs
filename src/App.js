@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import TaskContainer from './components/TaskContainer'
 import TaskForm from './components/TaskForm'
+import {newTaskObj} from './utils/newTaskObj'
 
 class App extends Component {
 
@@ -16,25 +17,17 @@ class App extends Component {
   }
 
   componentDidMount() {
+    let nto = newTaskObj
     this.setState({
-      selectedTask: "new"
+      selectedTask: nto
     })
   }
 
-  selectTask = (taskId) => {
-    let task = ""
-    if (taskId != "new") {
-      task = this.state.allTasks.find((t) => t.id == taskId)
-    } else {
-      task = "new"
-    }
-    this.setState({
-      selectedTask: task
-    })
-  }
 
   createOrUpdateTask = (taskInfo) => {
-    this.state.selectedTask == "new" ? this.createNewTask(taskInfo) : this.updateTask(taskInfo)
+    this.state.selectedTask.id == "new" ? this.createNewTask(taskInfo) : this.updateTask(taskInfo)
+    this.clearTaskForm()
+    console.log("checking if form is clearing -- this.state.selectedTask", this.state.selectedTask)
   }
 
   createNewTask = (formData) => {
@@ -44,7 +37,7 @@ class App extends Component {
     this.setState({
       allTasks: listState,
       taskCount: updatedCount
-    }, () => console.log("updatedState", this.state))
+    })
   }
 
   updateTask = (task) => {
@@ -60,10 +53,16 @@ class App extends Component {
    }
 
   displayTask = (event) => {
-    let tsk = event.target.id == "new" ? "new" : this.state.allTasks.find((t) => t.id == event.target.id)
+    let tsk = event.target.id == "new" ? newTaskObj : this.state.allTasks.find((t) => t.id == event.target.id)
     this.setState({
       selectedTask: tsk
-    }, () => console.log("state", this.state))
+    })
+  }
+
+  clearTaskForm = () => {
+    this.setState({
+      selectedTask: newTaskObj
+    })
   }
 
   render() {
@@ -74,7 +73,7 @@ class App extends Component {
           <div className="page-container">
 
             <TaskContainer allTasks={this.state.allTasks} taskCount = {this.state.taskCount}  displayTask={this.displayTask} />
-            
+
             <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createOrUpdateTask={this.createOrUpdateTask} />
           </div>
 
