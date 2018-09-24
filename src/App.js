@@ -60,7 +60,7 @@ class App extends Component {
    }
 
   displayTask = (event) => {
-    let tsk = event.target.id == "new" ? "new" : this.state.allTasks.find((t) => t.id == event.target.id) 
+    let tsk = event.target.id == "new" ? "new" : this.state.allTasks.find((t) => t.id == event.target.id)
     this.setState({
       selectedTask: tsk
     }, () => console.log("state", this.state))
@@ -74,6 +74,7 @@ class App extends Component {
           <div className="page-container">
 
             <TaskContainer allTasks={this.state.allTasks} taskCount = {this.state.taskCount}  displayTask={this.displayTask} />
+            
             <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createOrUpdateTask={this.createOrUpdateTask} />
           </div>
 

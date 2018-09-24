@@ -61,6 +61,14 @@ class TaskForm extends React.Component {
     })
   }
 
+  clearTaskForm = () => {
+    this.setState({
+      id: null,
+      content: "",
+      priority: ""
+    })
+  }
+
 
 
   render() {
@@ -78,7 +86,16 @@ class TaskForm extends React.Component {
           </select>
           <input type="text" placeholder="New Task" value={this.state.content} onChange={this.captureTaskInfo} name="content" />
         </form>
-        <button onClick={this.submit}>Save</button>
+        <div className="button-container">
+          <button onClick={this.submit}>
+            Save
+          </button>
+
+          <button onClick={this.clearTaskForm}>
+            Clear
+          </button>
+        </div>
+
       </div>
     )
   }
