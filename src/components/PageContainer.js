@@ -6,8 +6,8 @@ class PageContainer extends React.Component {
   render() {
     return (
       <div className="page-container">
-        <TaskContainer allTasks = {this.props.allTasks} taskCount = {this.props.taskCount} />
-        <TaskForm allTasks = {this.props.allTasks} taskCount = {this.props.taskCount} createNewTask={this.props.createNewTask}/>
+        <TaskContainer allTasks = {this.props.allTasks} taskCount = {this.props.taskCount} displayTask={this.props.displayTask}/>
+        <TaskForm selectedTask={this.props.selectedTask} allTasks = {this.props.allTasks} taskCount = {this.props.taskCount} createNewTask={this.props.createNewTask} />
       </div>
     )
   }

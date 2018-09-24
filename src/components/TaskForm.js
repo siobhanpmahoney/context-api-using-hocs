@@ -1,18 +1,44 @@
 import React from 'react'
-import {Prioritize} from './Prioritize'
 
 class TaskForm extends React.Component {
   constructor(props){
     super(props)
 
     this.state = {
+      id: null,
       content: "",
-      priority: ""
+      priority: "",
     }
   }
 
   componentDidMount() {
+    if (this.props.selectedTask != "new") {
+      let {selectedTask} = this.props
+      this.setState({
+        content: selectedTask.content,
+        priority: selectedTask.priority,
+        id: selectedTask.id
+      })
+    }
+  }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedTask != prevProps.selectedTask) {
+      if (this.props.selectedTask != "new") {
+        let {selectedTask} = this.props
+        this.setState({
+          content: selectedTask.content,
+          priority: selectedTask.priority,
+          id: selectedTask.id
+        })
+      } else {
+        this.setState({
+          id: null,
+          content: "",
+          priority: ""
+        })
+      }
+    }
   }
 
   submit = () => {
@@ -46,7 +72,7 @@ class TaskForm extends React.Component {
         <h3>Create New Task</h3>
         <form className="form">
 
-          <select onChange={this.captureTaskInfo} name="priority">
+          <select value={this.state.priority} onChange={this.captureTaskInfo} name="priority">
             <option value="" name="priorty">Select...</option>
             <option value="high" name="priorty">High</option>
             <option value="regular" name="priorty">Regular</option>

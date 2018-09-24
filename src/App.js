@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   createNewTask = (formData) => {
-    console.log("formData", formData)
     let listState = this.state.allTasks.splice(0)
     let updatedCount = this.state.taskCount + 1
     listState.push(formData)
@@ -44,7 +43,10 @@ class App extends Component {
   }
 
   displayTask = (event) => {
-    
+    let tsk = this.state.allTasks.find((t) => t.id == event.target.id)
+    this.setState({
+      selectedTask: tsk
+    }, () => console.log("state", this.state))
   }
 
   render() {
@@ -52,7 +54,7 @@ class App extends Component {
       <div className="App">
         <h1>Welcome to TaskMaster Contextualizer!</h1>
 
-        <PageContainer selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createNewTask={this.createNewTask}/>
+        <PageContainer selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createNewTask={this.createNewTask} displayTask={this.displayTask}/>
       </div>
     );
   }

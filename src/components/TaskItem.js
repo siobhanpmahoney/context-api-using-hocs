@@ -1,8 +1,10 @@
 import React from 'react'
 
-const TaskItem = ({task}) => {
+const TaskItem = ({task, displayTask}) => {
   return (
-    <div>{task.content}</div>
+    <div id={task.id} className={task.priorty}>
+      {task.content} <button onClick={displayTask} id={task.id} />
+    </div>
   )
 }
 

@@ -14,7 +14,7 @@ class TaskContainer extends React.Component {
       {this.props.taskCount < 1 ? (
         <h2>No Tasks Created Yet!</h2>
         ) : (
-          <TaskList allTasks={this.props.allTasks}/>
+          <TaskList allTasks={this.props.allTasks} displayTask={this.props.displayTask}/>
         )
       }
       </div>
