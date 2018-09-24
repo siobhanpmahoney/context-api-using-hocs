@@ -78,7 +78,7 @@ class TaskForm extends React.Component {
           </select>
           <input type="text" placeholder="New Task" value={this.state.content} onChange={this.captureTaskInfo} name="content" />
         </form>
-        <button onClick={this.submit}>Submit</button>
+        <button onClick={this.submit}>Save</button>
       </div>
     )
   }

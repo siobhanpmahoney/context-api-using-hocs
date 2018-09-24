@@ -11,6 +11,9 @@ class TaskContainer extends React.Component {
   render() {
     return (
       <div className="task-container">
+        <button id="new" onClick={this.props.displayTask}>
+          New Task
+        </button>
       {this.props.taskCount < 1 ? (
         <h2>No Tasks Created Yet!</h2>
         ) : (
