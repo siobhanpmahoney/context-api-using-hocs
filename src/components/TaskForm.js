@@ -42,21 +42,18 @@ class TaskForm extends React.Component {
   }
 
   submit = () => {
-
-    let createdId = this.props.taskCount + 1
-
+    let createdId = this.props.selectedTask == "new" ? this.props.taskCount + 1 : this.props.selectedTask.id
     let taskObj = {id: createdId, content: this.state.content, priority: this.state.priority}
     this.setState({
+      id: null,
       content: "",
       priority: ""
-    }, () => this.props.createNewTask(taskObj))
+    }, () => this.props.createOrUpdateTask(taskObj))
   }
 
   captureTaskInfo = (event) => {
     let val = event.target.value
     let name = event.target.name
-    console.log(val)
-    console.log(name)
     let taskState = Object.assign({}, this.state)
     taskState[name] = val
     this.setState({

@@ -33,6 +33,10 @@ class App extends Component {
     })
   }
 
+  createOrUpdateTask = (taskInfo) => {
+    this.state.selectedTask == "new" ? this.createNewTask(taskInfo) : this.updateTask(taskInfo)
+  }
+
   createNewTask = (formData) => {
     let listState = this.state.allTasks.splice(0)
     let updatedCount = this.state.taskCount + 1
@@ -42,6 +46,18 @@ class App extends Component {
       taskCount: updatedCount
     }, () => console.log("updatedState", this.state))
   }
+
+  updateTask = (task) => {
+    let tsk = this.state.allTasks.find((t) => t.id == task.id)
+    let updatedTasks = this.state.allTasks.splice(0)
+    this.setState({
+      allTasks: [
+        ...updatedTasks.splice(0, updatedTasks.indexOf(tsk)),
+        task,
+        ... updatedTasks.splice(updatedTasks.indexOf(tsk) + 1)
+       ]
+    })
+   }
 
   displayTask = (event) => {
     let tsk = this.state.allTasks.find((t) => t.id == event.target.id)
@@ -57,7 +73,7 @@ class App extends Component {
 
           <div className="page-container">
             <TaskContainer allTasks={this.state.allTasks} taskCount = {this.state.taskCount}  displayTask={this.displayTask} />
-            <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createNewTask={this.createNewTask} />
+            <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createOrUpdateTask={this.createOrUpdateTask} />
           </div>
 
 
