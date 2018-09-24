@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import PageContainer from './components/PageContainer'
+import TaskContainer from './components/TaskContainer'
+import TaskForm from './components/TaskForm'
 
 class App extends Component {
 
@@ -54,7 +55,12 @@ class App extends Component {
       <div className="App">
         <h1>Welcome to TaskMaster Contextualizer!</h1>
 
-        <PageContainer selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createNewTask={this.createNewTask} displayTask={this.displayTask}/>
+          <div className="page-container">
+            <TaskContainer allTasks={this.state.allTasks} taskCount = {this.state.taskCount}  displayTask={this.displayTask} />
+            <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createNewTask={this.createNewTask} />
+          </div>
+
+
       </div>
     );
   }
