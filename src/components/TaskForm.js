@@ -16,30 +16,14 @@ class TaskForm extends React.Component {
   }
 
   componentDidMount() {
-    // if (this.props.selectedTask.id != "new") {
       let {selectedTask} = this.props
       this.setState({
         content: selectedTask.content,
         priority: selectedTask.priority,
         id: selectedTask.id
       })
-    // }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.selectedTask != prevProps.selectedTask) {
-  //       console.log("in componentDidUpdate")
-  //       console.log("CDU, this.props.selectedTask", this.props.selectedTask)
-  //     // if (this.props.selectedTask.id != "new") {
-  //       let {selectedTask} = this.props
-  //       console.log("in comp did update - selectedTask", selectedTask)
-  //       this.setState({
-  //         content: selectedTask.content,
-  //         priority: selectedTask.priority,
-  //         id: selectedTask.id
-  //       })
-  //   }
-  // }
 
   componentDidUpdate(prevProps) {
     if (this.props.taskCount != prevProps.taskCount) {
@@ -53,11 +37,6 @@ class TaskForm extends React.Component {
   submit = () => {
     let createdId = this.props.selectedTask.id == "new" ? this.props.taskCount + 1 : this.props.selectedTask.id
     let taskObj = {id: createdId, content: this.state.content, priority: this.state.priority}
-    console.log(newTaskObj)
-    // this.setState({
-    //   newTaskObj
-    // }, () => this.props.createOrUpdateTask(taskObj))
-
     this.props.createOrUpdateTask(taskObj)
   }
 
@@ -97,7 +76,7 @@ class TaskForm extends React.Component {
             Save
           </button>
 
-          <button onClick={this.clearTaskForm}>
+          <button onClick={this.props.clearTaskForm}>
             Clear
           </button>
         </div>

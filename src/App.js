@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let nto = newTaskObj
+    let blankTaskState = newTaskObj
     this.setState({
-      selectedTask: nto
+      selectedTask: blankTaskState
     })
   }
 
@@ -27,7 +27,6 @@ class App extends Component {
   createOrUpdateTask = (taskInfo) => {
     this.state.selectedTask.id == "new" ? this.createNewTask(taskInfo) : this.updateTask(taskInfo)
     this.clearTaskForm()
-    console.log("checking if form is clearing -- this.state.selectedTask", this.state.selectedTask)
   }
 
   createNewTask = (formData) => {
@@ -74,7 +73,7 @@ class App extends Component {
 
             <TaskContainer allTasks={this.state.allTasks} taskCount = {this.state.taskCount}  displayTask={this.displayTask} />
 
-            <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createOrUpdateTask={this.createOrUpdateTask} />
+            <TaskForm selectedTask={this.state.selectedTask} allTasks={this.state.allTasks} taskCount = {this.state.taskCount} createOrUpdateTask={this.createOrUpdateTask} clearTaskForm={this.clearTaskForm}/>
           </div>
 
 
